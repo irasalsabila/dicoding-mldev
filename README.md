@@ -16,6 +16,7 @@ Learning Path **Mechine Learning Developer** ini didapatkan dari beberapa progra
 
 - [Belajar Machine Learning untuk Pemula →](https://github.com/irasalsabila/dicoding-mldev/tree/main/Belajar%20Machine%20Learning%20Pemula)
 - [Belajar Pengembangan Machine Learning →](https://github.com/irasalsabila/dicoding-mldev/tree/main/Belajar%20Pengembangan%20Machine%20Learning)
+- [Machine Learning terapan →](https://github.com/irasalsabila/dicoding-mldev/tree/main/Belajar%20Pengembangan%20Machine%20Learning)
 
 ## Result
 
