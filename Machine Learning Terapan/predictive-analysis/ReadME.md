@@ -122,7 +122,7 @@ $Y_{i}$	=	_observed values_ atau _ground truth_ dari nilai sebenarnya, dalam kas
 $\hat{Y}_{i}$	=	_predicted values_ atau _estimated target values_, dalam kasus ini nilai yang digunakan adalah nilai prediksi model terhadap variabel `HeartDisease`
 
 
-Untuk melakukan evaluasi matrik, dapat menerapkan _code_ yang berada pada Evaluation Model yang tercantum pada _notebook_. Dalam melakukan evaluasi, nilai $\hat{Y}_{i}$ merupakan nilai prediksi yang keluar dari variabel-variabel yang ada dalam `Xtrain`, seperti `Age`, `Sex`, `ChestPainType`, `RestingBP`, `Cholesterol`, `FastingBS`, `RestingECG`, `MaxHR`, `ExerciseAngina`, `Oldpeak`, dan `ST_Slope`. Variabel-variabel pada tabel di bawah kemudian digunakan untuk melakukan prediksi, yang mana akan mengeluarkan nilai 0 atau 1, dan akan tersimpan pada variabel $\hat{Y}_{i}$.
+Untuk melakukan evaluasi matrik, dapat menerapkan _code_ yang berada pada Evaluation Model yang tercantum pada _notebook_. Dalam melakukan evaluasi, nilai $\hat{Y}_{i}$ merupakan nilai prediksi yang keluar dari variabel-variabel yang ada dalam `Xtrain`, seperti `Age`, `Sex`, `ChestPainType`, `RestingBP`, `Cholesterol`, `FastingBS`, `RestingECG`, `MaxHR`, `ExerciseAngina`, `Oldpeak`, dan `ST_Slope`. Variabel-variabel pada tabel di bawah kemudian digunakan untuk melakukan prediksi, yang mana akan mengeluarkan nilai 0 atau 1, dan akan tersimpan pada variabel _predicted value_ .
 
 |   |       Age |       Sex | ChestPainType | RestingBP | Cholesterol | FastingBS | RestingECG |     MaxHR | ExerciseAngina |   Oldpeak |  ST_Slope |
 |--:|----------:|----------:|--------------:|----------:|------------:|----------:|-----------:|----------:|---------------:|----------:|----------:|
@@ -132,7 +132,7 @@ Untuk melakukan evaluasi matrik, dapat menerapkan _code_ yang berada pada Evalua
 | 3 | -1.114157 | -1.936826 |      1.276887 |  0.970493 |    0.503574 | -0.551733 |   0.017264 |  1.501203 |      -0.824310 | -0.831502 |  1.051095 |
 | 4 | -0.372041 |  0.516309 |     -0.815884 |  0.414627 |    0.292926 | -0.551733 |   1.600366 |  0.126132 |       1.213136 |  3.857266 | -0.596519 |
 
-Sedangkan, nilai $Y_{i}$ merupakan nilai sebenarnya dari variabel `HeartDisease`, yakni 0 dan 1. Kemudian, MSE akan melakukan perhitungan yang melibatkan hasil dari $\hat{Y}_{i}$ dan $Y_{i}$, yang keduanya sama-sama memiliki nilai 0 dan 1.
+Sedangkan, nilai $Y_{i}$ merupakan nilai sebenarnya dari variabel `HeartDisease`, yakni 0 dan 1. Kemudian, MSE akan melakukan perhitungan yang melibatkan hasil dari _predicted value_ dan _ground truth_, yang keduanya sama-sama memiliki nilai 0 dan 1.
 
 Referensi:
 
