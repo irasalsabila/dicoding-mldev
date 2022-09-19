@@ -29,7 +29,7 @@ _Random forest_ adalah kombinasi dari masing – masing _tree_ atau pohon, yang 
 _AdaBoost_ atau _Adaptive Boost_ merupakan algoritma yang memanfaatkan _bagging_ dan _boosting_ untuk meningkatkan akurasi. Sama seperti algoritma _random forest_, algoritma _AdaBoost_ juga menggunakan beberapa _decision tree_ untuk melakukan prediksi.
 
 ## Data Understanding
-Dataset yang digunakan pada proyek _machine learning_ merupakan **918 data observasi** yang didapat dari situs [kaggle](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction) dan [UCI Machine Learning Repository] (http://archive.ics.uci.edu/ml/datasets/Heart+Disease). Terdapat 11 fitur yang dapat digunakan untuk memprediksi kemungkinan penyakit jantung. 
+Dataset yang digunakan pada proyek _machine learning_ merupakan **918 data observasi** yang didapat dari situs [kaggle](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction) dan [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/Heart+Disease). Terdapat 11 fitur yang dapat digunakan untuk memprediksi kemungkinan penyakit jantung. 
 
 **Variabel-variabel pada Heart Failure UCI Dataset adalah sebagai berikut:**
 
@@ -86,7 +86,15 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 
 ![model](https://github.com/irasalsabila/dicoding-mldev/blob/main/Machine%20Learning%20Terapan/output/eval.png)
 
-Pada tabel disajikan informasi hasil prediksi dari model yang digunakan. Dari tabel yang disajikan dapat dilihat bahwa prediksi menggunakan KNN pada baris 199, memiliki hasil paling sesuai dengan data aslinya, dibandingkan kedua model lainnya.
+Gambar di atas dapat dilihat juga pada tabel di bawah ini. Tabel memberikan informasi detail terkait hasil _training_ dan _testing_
+
+|		| train	    |	test      |
+|---------------|-----------|-------------|
+|KNN		| 0.000128  |	0.000141  |
+|AdaBoost	| 0.000183  |	0.000201  |
+|RandomForest	| 0.00012   |	0.000158  |
+
+Pada tabel di bawah disajikan informasi hasil prediksi dari model yang digunakan. Dari tabel yang disajikan dapat dilihat bahwa prediksi menggunakan KNN pada baris 199, memiliki hasil paling sesuai dengan data aslinya, dibandingkan kedua model lainnya.
 
 |     | y_true | prediksi_KNN | prediksi_AdaBoost | prediksi_RandomForest |
 |-----|--------|--------------|-------------------|-----------------------|
@@ -114,9 +122,20 @@ $Y_{i}$	=	_observed values_ atau _ground truth_ dari nilai sebenarnya, dalam kas
 $\hat{Y}_{i}$	=	_predicted values_ atau _estimated target values_, dalam kasus ini nilai yang digunakan adalah nilai prediksi model terhadap variabel `HeartDisease`
 
 
-Untuk melakukan evaluasi matrik, dapat menerapkan _code_ yang berada pada Evaluation Model yang tercantum pada _notebook_.
+Untuk melakukan evaluasi matrik, dapat menerapkan _code_ yang berada pada Evaluation Model yang tercantum pada _notebook_. Dalam melakukan evaluasi, nilai $\hat{Y}_{i}$ merupakan nilai prediksi yang keluar dari variabel-variabel yang ada dalam `Xtrain`, seperti `Age`, `Sex`, `ChestPainType`, `RestingBP`, `Cholesterol`, `FastingBS`, `RestingECG`, `MaxHR`, `ExerciseAngina`, `Oldpeak`, dan `ST_Slope`. Variabel-variabel pada tabel di bawah kemudian digunakan untuk melakukan prediksi, yang mana akan mengeluarkan nilai 0 atau 1, dan akan tersimpan pada variabel $\hat{Y}_{i}$.
 
+|   |       Age |       Sex | ChestPainType | RestingBP | Cholesterol | FastingBS | RestingECG |     MaxHR | ExerciseAngina |   Oldpeak |  ST_Slope |
+|--:|----------:|----------:|--------------:|----------:|------------:|----------:|-----------:|----------:|---------------:|----------:|----------:|
+| 0 |  0.052026 |  0.516309 |      1.276887 |  0.970493 |   -0.036784 | -0.551733 |   0.017264 | -0.581047 |      -0.824310 | -0.831502 |  1.051095 |
+| 1 |  0.052026 | -1.936826 |      0.230501 |  0.414627 |    1.007298 | -0.551733 |   1.600366 |  0.126132 |      -0.824310 | -0.831502 |  1.051095 |
+| 2 |  0.158042 |  0.516309 |     -0.815884 | -0.030066 |    1.410278 | -0.551733 |   0.017264 | -0.188170 |       1.213136 |  0.293802 | -0.596519 |
+| 3 | -1.114157 | -1.936826 |      1.276887 |  0.970493 |    0.503574 | -0.551733 |   0.017264 |  1.501203 |      -0.824310 | -0.831502 |  1.051095 |
+| 4 | -0.372041 |  0.516309 |     -0.815884 |  0.414627 |    0.292926 | -0.551733 |   1.600366 |  0.126132 |       1.213136 |  3.857266 | -0.596519 |
+
+Sedangkan, nilai $Y_{i}$ merupakan nilai sebenarnya dari variabel `HeartDisease`, yakni 0 dan 1. Kemudian, MSE akan melakukan perhitungan yang melibatkan hasil dari $\hat{Y}_{i}$ dan $Y_{i}$, yang keduanya sama-sama memiliki nilai 0 dan 1.
 
 Referensi:
+
 [1] [Heart Failure: Diagnosis, Severity Estimation and Prediction of Adverse Events Through Machine Learning Techniques](https://www.sciencedirect.com/science/article/pii/S2001037016300460)
-[2]: [Heart Failure UCI Dataset](http://archive.ics.uci.edu/ml/datasets/Heart+Disease)
+
+[2] [Heart Failure UCI Dataset](http://archive.ics.uci.edu/ml/datasets/Heart+Disease)
