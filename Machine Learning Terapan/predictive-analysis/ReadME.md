@@ -84,7 +84,7 @@ _Data preparation_ yang digunakan di antaranya:
 ## Modeling
 Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Proses ini dilakukan dengan menggunakan tiga algoritma, yakni KNN, RandomForest, dan AdaBoost. Hasil akhirnya adalah untuk mencari algoritma yang memiliki performa paling baik dari ketiga algoritma yang digunakan. Dapat dilihat dari _bar chart_ yang menunjukkan tiga model algoritma yang digunakan. Diketahui bahwa algoritma KNN merupakan algoritma yang memiliki error yang paling kecil dibanding model lainnya.
 
-![model](https://github.com/irasalsabila/dicoding-mldev/blob/main/Machine%20Learning%20Terapan/output/eval.png)
+![model](https://github.com/irasalsabila/dicoding-mldev/blob/main/Machine%20Learning%20Terapan/output/eval.png?raw=true)
 
 Gambar di atas dapat dilihat juga pada tabel di bawah ini. Tabel memberikan informasi detail terkait hasil _training_ dan _testing_
 
