@@ -144,7 +144,7 @@ Hasil dari evaluasi matriks adalah sebagai berikut:
 ![ev-rmse](https://user-images.githubusercontent.com/57740421/196224789-a7403170-7bdd-4266-aa98-c493a06df202.png)
 
 
-Dari visualisasi proses training model di atas dapat disimpulkan bahwa grafik mengalami overfitting, karena hasil plot dari _test_ mengalami penurunan menjadi 0.21 dibandingkan dengan plot dari _train_ yang berada di 0.19.
+Dari visualisasi proses training model di atas cukup smooth dan model konvergen pada epochs sekitar 100. Dari proses ini, diperoleh nilai error akhir sebesar sekitar 0.19 dan error pada data validasi sebesar 0.21. Hasil analisis akhir menyatakan bahwa model yang dibuat mengalami Overvitting, karena hasil plot dari data _test_ terus mengalami penurunan dibandingkan dengan hasil plot dari data _train.
 
 Referensi:
 
