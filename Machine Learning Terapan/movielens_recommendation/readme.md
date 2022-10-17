@@ -59,13 +59,15 @@ _Data preparation_ yang digunakan di antaranya:
 2. Melakukan Splitting: membagi data menjadi _training_ dan _testing_ untuk _modeling_. Dalam melakukan _splitting_, digunakan rasio 80:20, yang berarti 80% data training, dan 20% data testing.
 3. Mengurutkan data: pengurutan data ini dilakukan berdasarkan `movieId` dan dilakukan secara _ascending_.
 4. Menghilangkan duplikasi data yang memiliki nilai sama
-5. _Cosine Similarity_: menggunakan `cosine_similarity` dari library `sklearn` untuk mendapatkan mengetahui _similarity degree_ 
+5. Melakukan pembobotan dengan TF-IDF.
+6. _Cosine Similarity_: menggunakan `cosine_similarity` dari library `sklearn` untuk mendapatkan mengetahui _similarity degree_ 
 
 
 ## Modeling
 Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Proses ini dilakukan dengan menggunakan tiga algoritma, yakni **Content Based Filtering** dan **Collaborative Filtering**. Hasil akhir yang diharapkan dari sistem rekomendasi ini adalah dapat memudahkan pengguna untuk mencari film yang diinginkan, baik berdasarkan preferensi film yang serupa, ataupun rekomendasi berdasarkan rating.
 
-1. Dalam membangun **Content Based Filtering**, digunakan module `cosine_similarity` dari _library_ `sklearn`. Digunakan fungsi `movie_recommendation` dengan parameter `movie_name` untuk membangun model. Pada fungsi tersebut juga ditetapkan `k = 5` yang berarti akan mengeluarkan rekomendasi 5 film teratas berdasarkan genre.
+1. Dalam membangun **Content Based Filtering**, hal pertama yang akan dilakukan adalah melakukan pembobotan terhadap fitur `genre` menggunakan module `TfidfVectorizer` dari _library_ `sklearn` untuk mendapatkan genre apa saja yang ada. Selanjutnya, digunakan module `cosine_similarity` dari _library_ `sklearn`. Digunakan fungsi `movie_recommendation` dengan parameter `movie_name` untuk membangun model. Pada fungsi tersebut juga ditetapkan `k = 5` yang berarti akan mengeluarkan rekomendasi 5 film teratas berdasarkan genre.
+
 - Film yang disukai oleh pengguna dimasa lalu, yang akan dicari rekomendasinya:
 
 | id | title | genre | timestamp |  |
@@ -76,13 +78,14 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 
 |  | title | genre |  |  |
 |---:|---:|---:|---:|---|
-| 0 | Shrek the Third (2007) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
-| 1 | Adventures of Rocky and Bullwinkle, The (2000) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
-| 2 | Wild, The (2006) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
-| 3 | Antz (1998) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
-| 4 | Tale of Despereaux, The (2008) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
+| 0 | Shrek the Third (2007) | Adventure\|Animation\|Children\|Comedy\|Fantasy |
+| 1 | Adventures of Rocky and Bullwinkle, The (2000) | Adventure\|Animation\|Children\|Comedy\|Fantasy |
+| 2 | Wild, The (2006) | Adventure\|Animation\|Children\|Comedy\|Fantasy |
+| 3 | Antz (1998) | Adventure\|Animation\|Children\|Comedy\|Fantasy | 
+| 4 | Tale of Despereaux, The (2008) | Adventure\|Animation\|Children\|Comedy\|Fantasy |
 
-1. Dalam membangun **Collaborative Filtering**, dilakukan `training` dan pembuatan model `RecommenderNet`. Training dilakukan dengan optimizer `Adam` dan matriks evaluasi `RMSE`.
+1. Dalam membangun **Collaborative Filtering**, dilakukan `training` dan pembuatan model `RecommenderNet`. Training dilakukan dengan optimizer `Adam` dan matriks evaluasi `RMSE`. Model `RecommenderNet` akan menghitung skor _match_ di antara dua _embedding layers_ milik _user_ dan _movie_ melalui `dot_product`, dan menambahkan bias ke keduanya. _Match_ skor kemudian akan berada pada skala interval 0 hingga 1 melalui `sigmoid`.
+
 - Film genre yang direkomendasikan berdasarkan _rating_ tertinggi:
 
 | movie with high ratings from user |
@@ -92,6 +95,7 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 | Age of Innocence, The (1993) : Drama |
 | Legends of the Fall (1994) : Drama\|Romance\|War\|Western |
 | Primal Fear (1996) : Crime\|Drama\|Mystery\|Thriller |
+
 
 - Film TOP 10 yang direkomendasikan:
 
@@ -110,6 +114,15 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 
 
 ## Evaluation
+### Content Based Filtering
+Evaluasi yang dapat digunakan adalah matriks presisi. Presisi merupakan sebuah kemampuan dari alat ukur untuk menunjukkan angka yang sama bila dipakai secara berulang-ulang dalam kondisi pengukuran dan obyek ukur yang sama. Pada kasus ini, presisi akan memprediksi label yang benar terhadap keseluruhan prediksi. 
+
+Rumus perhitungan matrik presisi:
+![pres](https://user-images.githubusercontent.com/57740421/196231953-e943707a-8221-4f64-80f7-d6826a514c58.png)
+
+Dari hasil rekomendasi yang ditampilkan pada bagian modeling, diketahui bahwa pengguna akan mencari rekomendasi film terkait `Toy Story (1995)`. Kemudian, sistem rekomendasi memberikan 5 film terkait yang memiliki genre serupa, yakni `Adventure\|Animation\|Children\|Comedy\|Fantasy`. Berdasarkan rumus presisi di atas, diketahui bahwa keseluruhan rekomendasi yang diberikan memiliki genre serupa dengan film yang dicari rekomendasinya. Artinya, presisi sistem yang dibangun sebesar 5/5 atau 100%.
+
+### Collaborative Filtering
 Evaluasi metrik yang digunakan untuk mengukur kinerja model adalah metrik RMSE (Root Mean Squared Error). RMSE merupakan metode pengukuran dengan mengukur perbedaan nilai dari prediksi sebuah model sebagai estimasi atas nilai yang diobservasi, dan merupakan hasil kuadrat dari MSE. Keakuratan metode estimasi kesalahan pengukuran ditandai dengan adanya nilai RMSE yang kecil. 
 
 Semakin kecil nilai yang diperoleh RMSE, semakin akurat juga modelnya.
