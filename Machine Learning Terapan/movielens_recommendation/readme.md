@@ -1,5 +1,3 @@
-﻿
-
 # Laporan Proyek Machine Learning - Salsabila Zahrah Pranida
 
 ## Project Overview
@@ -24,7 +22,6 @@ Algoritma Content Based Filtering adalah algoritma yang menggunakan fitur item u
 - **Collaborative Filtering**
 Algoritma Collaborative Filtering adalah algoritma yang menggunakan kesamaan antara pengguna dan item secara bersamaan untuk memberikan rekomendasi. Algoritma tersebut juga bergantung pada preferensi pengguna serupa untuk menawarkan rekomendasi kepada pengguna tertentu.
 
-
 ## Data Understanding
 Dataset yang digunakan pada proyek _machine learning_ merupakan **105.339 data datings** dan **10.329 data movie** yang didapat dari situs [kaggle](https://www.kaggle.com/datasets/ayushimishra2809/movielens-dataset). 
 
@@ -40,6 +37,19 @@ Dataset yang digunakan pada proyek _machine learning_ merupakan **105.339 data d
 
 ### Explanatory Data Analysis
 Untuk memahami kedua dataset `movies` dan `ratings`, maka dilakukan Univariate Analysis. 
+
+| userId | movieId | rating | timestamp |  |
+|---:|---:|---:|---:|---|
+| count | 105339.000000 | 105339.000000 | 105339.000000 | 1.053390e+05 |
+| mean | 364.924539 | 13381.312477 | 3.516850 | 1.130424e+09 |
+| std | 197.486905 | 26170.456869 | 1.044872 | 1.802660e+08 |
+| min | 1.000000 | 1.000000 | 0.500000 | 8.285650e+08 |
+| 25% | 192.000000 | 1073.000000 | 3.000000 | 9.711008e+08 |
+| 50% | 383.000000 | 2497.000000 | 3.500000 | 1.115154e+09 |
+| 75% | 557.000000 | 5991.000000 | 4.000000 | 1.275496e+09 |
+| max | 668.000000 | 149532.000000 | 5.000000 | 1.452405e+09 |
+
+Dari tabel di atas dapat diketahui dengan detail bahwa data `rating` memiliki minimum rating sebesar 0.5, dan maksimal rating sebesar 5, serta rata-rata rating sebesar 3.5
 
 ## Data Preparation
 
@@ -57,11 +67,46 @@ Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyel
 
 1. Dalam membangun **Content Based Filtering**, digunakan module `cosine_similarity` dari _library_ `sklearn`. Digunakan fungsi `movie_recommendation` dengan parameter `movie_name` untuk membangun model. Pada fungsi tersebut juga ditetapkan `k = 5` yang berarti akan mengeluarkan rekomendasi 5 film teratas berdasarkan genre.
 - Film yang disukai oleh pengguna dimasa lalu, yang akan dicari rekomendasinya:
+
+| id | title | genre | timestamp |  |
+|---:|---:|---:|---:|---|
+| 113 | 1 | Toy Story (1995) | Adventure\|Animation\|Children\|Comedy\|Fantasy | 1.053390e+05 |
+
 - Film yang direkomendasikan melalui fungsi `movie_recommendation`, yang kemudian menghasilkan 5 film teratas sesuai dengan genre yang sama:
+
+|  | title | genre |  |  |
+|---:|---:|---:|---:|---|
+| 0 | Shrek the Third (2007) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
+| 1 | Adventures of Rocky and Bullwinkle, The (2000) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
+| 2 | Wild, The (2006) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
+| 3 | Antz (1998) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
+| 4 | Tale of Despereaux, The (2008) | Adventure\|Animation\|Children\|Comedy\|Fantasy |  |  |
 
 1. Dalam membangun **Collaborative Filtering**, dilakukan `training` dan pembuatan model `RecommenderNet`. Training dilakukan dengan optimizer `Adam` dan matriks evaluasi `RMSE`.
 - Film genre yang direkomendasikan berdasarkan _rating_ tertinggi:
+
+| movie with high ratings from user |
+|---|
+| Multiplicity (1996) : Comedy |
+| Maverick (1994) : Adventure\|Comedy\|Western |
+| Age of Innocence, The (1993) : Drama |
+| Legends of the Fall (1994) : Drama\|Romance\|War\|Western |
+| Primal Fear (1996) : Crime\|Drama\|Mystery\|Thriller |
+
 - Film TOP 10 yang direkomendasikan:
+
+| Top 10 movie recommendation |
+|---|
+| Memories (Memorîzu) (1995) : Animation\|Fantasy\|Sci-Fi\|Thriller |
+| King of Masks, The (Bian Lian) (1996) : Drama |
+| Memories of Murder (Salinui chueok) (2003) : Crime\|Drama\|Mystery\|Thriller |
+| Until the End of the World (Bis ans Ende der Welt) (1991) : Adventure\|Drama\|Sci-Fi |
+| Interstate 60 (2002) : Adventure\|Comedy\|Drama\|Fantasy\|Mystery\|Sci-Fi\|Thriller |
+| Resident Evil: Retribution (2012) : Action\|Horror\|Sci-Fi\|IMAX |
+| Fireworks (Hana-bi) (1997) : Crime\|Drama |
+| Pier, The (Jetée, La) (1962) : Romance\|Sci-Fi |
+| Star Wreck: In the Pirkinning (2005) : Action\|Comedy\|Sci-Fi |
+| Animal Farm (1954) : Animation\|Drama |
 
 
 ## Evaluation
@@ -70,7 +115,7 @@ Evaluasi metrik yang digunakan untuk mengukur kinerja model adalah metrik RMSE (
 Semakin kecil nilai yang diperoleh RMSE, semakin akurat juga modelnya.
 
 Rumus perhitungan matrik MSE: 
-![alt](https://www.gstatic.com/education/formulas2/472522532/en/mean_squared_error.svg)
+![image](https://user-images.githubusercontent.com/57740421/196224758-6f05beb8-a8bd-4abb-ab5c-72801d9c3b9f.png)
 
 ket:
 
@@ -83,6 +128,7 @@ $Y_{i}$	=	_observed values_ atau _ground truth_ dari nilai sebenarnya.
 $\hat{Y}_{i}$	=	_predicted values_ atau _estimated target values_.
 
 Hasil dari evaluasi matriks adalah sebagai berikut:
+![ev-rmse](https://user-images.githubusercontent.com/57740421/196224789-a7403170-7bdd-4266-aa98-c493a06df202.png)
 
 
 Dari visualisasi proses training model di atas cukup smooth dan model konvergen pada epochs sekitar 100. Dari proses ini, saya memperoleh nilai error akhir sebesar sekitar 0.19 dan error pada data validasi sebesar 0.20.
