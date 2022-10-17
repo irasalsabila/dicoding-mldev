@@ -11,13 +11,14 @@ Learning Path **Mechine Learning Developer** ini didapatkan dari beberapa progra
 - [x] [Belajar Machine Learning untuk Pemula](https://www.dicoding.com/academies/184), Pelajari materi dasar pengembangan machine learning dan langkah menciptakan model machine learning pertamamu untuk memproses data.
 - [x] [Belajar Pengembangan Machine Learning](https://www.dicoding.com/academies/185), Pelajari implementasi machine learning pada industri mulai dari computer vision, natural language, serta deployment proyek machine learning.
 - [x] [Machine Learning Terapan](https://www.dicoding.com/academies/319), Pelajari penerapan machine learning dengan real-world projects mulai dari predictive analytics, sentiment analysis, dan sistem rekomendasi.
-- [] [Machine Learning Operations (MLOps)](https://www.dicoding.com/academies/443), Pelajari proses pengembangan dan pengoperasian sistem machine learning dalam lingkup produksi dengan menerapkan berbagai prinsip MLOps.
+- [ ] [Machine Learning Operations (MLOps)](https://www.dicoding.com/academies/443), Pelajari proses pengembangan dan pengoperasian sistem machine learning dalam lingkup produksi dengan menerapkan berbagai prinsip MLOps.
 
 ## Submission
 
 - [Belajar Machine Learning untuk Pemula →](https://github.com/irasalsabila/dicoding-mldev/tree/main/Belajar%20Machine%20Learning%20Pemula)
 - [Belajar Pengembangan Machine Learning →](https://github.com/irasalsabila/dicoding-mldev/tree/main/Belajar%20Pengembangan%20Machine%20Learning)
-- [Machine Learning terapan →](https://github.com/irasalsabila/dicoding-mldev/tree/main/Machine%20Learning%20Terapan)
+- [Machine Learning Terapan →](https://github.com/irasalsabila/dicoding-mldev/tree/main/Machine%20Learning%20Terapan)
+- [machine Learning Operations (MLOps)]
 
 ## Result
 
